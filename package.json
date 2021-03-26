@@ -11,5 +11,8 @@
     "url": "github.com:BaxxiJ/hero-emitter.git"
   },
   "author": "Joseph",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "https": "^1.0.0"
+  }
 }
