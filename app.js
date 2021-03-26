@@ -18,22 +18,26 @@ var api = {
     path: endpoint + user_key,
 }
 
-const myURL = new URL(endpoint, prod_url);
+apiRequest(api.hostname, api.path);
+apiRequest(test_api.hostname, test_api.path);
 
-https.get(test_api.hostname + test_api.path, (resp) => {
-  let data = '';
+function apiRequest(hostname, path) {
+    console.log(hostname + path);
+    https.get(hostname + path, (resp) => {
+    let data = '';
 
-  // A chunk of data has been received.
-  resp.on('data', (chunk) => {
-    data += chunk;
-  });
+    // A chunk of data has been received.
+    resp.on('data', (d) => {
+        process.stdout.write(d);
+    });
 
-  // The whole response has been received. Print out the result.
-  resp.on('end', () => {
-    //console.log(JSON.parse(data).quote);
-    console.log(data);
-  });
+    // The whole response has been received. Print out the result.
+    resp.on('end', () => {
+        //console.log(JSON.parse(data).quote) (.quote removed by path parameter);
+        console.log(data); // this basically works as a newline, doesn't output the data object but makes logs nicer
+    });
 
-}).on("error", (err) => {
-  console.log("Error: " + err.message);
-});
+    }).on("error", (err) => {
+    console.log("Error: " + err.message);
+    });
+}
