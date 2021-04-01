@@ -18,11 +18,32 @@ var api = {
     path: endpoint + user_key,
 }
 
+// Setting Timers for the function call
+
+// 
+
+setInterval(timerFunc, 1000);
+
 apiRequest(api.hostname, api.path);
+
+function timerFunc() { 
+    var limit = (Math.random() * 10) * (Math.random() * 10);
+    //var output = "#";
+    for (let i = 0; i < limit; i++) {
+        //console.log(output += "#");
+        apiRequest(api.hostname, api.path);
+    }
+}
+
 apiRequest(test_api.hostname, test_api.path);
 
+// Sending the API
+
+// apiRequest(api.hostname, api.path);
+// apiRequest(test_api.hostname, test_api.path); 
+
 function apiRequest(hostname, path) {
-    console.log(hostname + path);
+    // console.log(hostname + path);
     https.get(hostname + path, (resp) => {
     let data = '';
 
