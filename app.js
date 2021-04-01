@@ -22,7 +22,7 @@ var api = {
 
 // 
 
-setInterval(timerFunc, 1000);
+setInterval(timerFunc, 600000);
 
 apiRequest(api.hostname, api.path);
 
