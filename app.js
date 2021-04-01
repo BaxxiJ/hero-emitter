@@ -3,6 +3,8 @@ const https = require('https');
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+
 var prod_url = "https://hero-superheroes-apicast-production.apps.coffee.demolab.local:443";
 var endpoint = "/v1/api/heroes/random";
 var user_key = "?user_key=d5e22b69792d9c4fe35744df5a7d793c";
