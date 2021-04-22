@@ -47,8 +47,11 @@ function apiRequest(hostname, path) {
     let options = {
         hostname: "energydemo-prod.apps.coffee.demolab.local",
         port: 80,
-        path: path,
-        method: 'POST'
+        path: "/domain1/test1?user_key=a9ceb65e371bf1c54038efb99f728d39",
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
     };
     console.log(hostname + path);
     let req = http.request(options, (resp) => {
@@ -69,6 +72,7 @@ function apiRequest(hostname, path) {
 
     req.write(JSON.stringify(body));
     console.log(req);
+    console.log()
     req.end();
 };
 
