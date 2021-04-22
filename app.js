@@ -22,48 +22,49 @@ function getRandom(){
 
 setInterval(timerFunc, 1200);
 
-function timerFunc() {
-    user_keys.forEach(apiPathAssembler);
-}
+// function timerFunc() {
+//     user_keys.forEach(apiPathAssembler);
+// }
 
-function apiPathAssembler(user_key) {
-    console.log(user_key);
-    let loops = Math.random() * 3
-    for (let i = 0; i < loops; i++) {
-        let callAmount = getRandom();
-        // if (i == 2) {
-        //     callAmount = callAmount / 4;
-        // }
-        for (let j = 0; j < callAmount; j++) {
-            apiRequest(prod_url, endpoints[i] + user_key);
-            console.log(prod_url + endpoints[i] + user_key);
-        }
-    }
-}
+// function apiPathAssembler(user_key) {
+//     console.log(user_key);
+//     let loops = Math.random() * 3
+//     for (let i = 0; i < loops; i++) {
+//         let callAmount = getRandom();
+//         // if (i == 2) {
+//         //     callAmount = callAmount / 4;
+//         // }
+//         for (let j = 0; j < callAmount; j++) {
+//             apiRequest(prod_url, endpoints[i] + user_key);
+//             console.log(prod_url + endpoints[i] + user_key);
+//         }
+//     }
+// }
 
+apiRequest(api.hostname, api.path);
 // Sending the API
-    function apiRequest(hostname, path) {
-        console.log(hostname + path);
-        let req = http.request(hostname + path, (resp) => {
-            let data = '';
+function apiRequest(hostname, path) {
+    console.log(hostname + path);
+    let req = http.request(hostname + path, (resp) => {
+        let data = '';
 
-            resp.on('data', (chunk) => {
-                console.log(`BODY: ${chunk}`);
-            })
-            resp.on('end', () => {
-                console.log("No more data in response");
-            });
-        });
-
-        req.on('error', (e) => {
-            console.error("ERR: " + e.message);
+        resp.on('data', (chunk) => {
+            console.log(`BODY: ${chunk}`);
         })
-        console.log("req created?");
+        resp.on('end', () => {
+            console.log("No more data in response");
+        });
+    });
 
-        req.write(JSON.stringify(body));
-        console.log("req written?");
-        req.end();
-    };
+    req.on('error', (e) => {
+        console.error("ERR: " + e.message);
+    })
+    console.log("req created?");
+
+    req.write(JSON.stringify(body));
+    console.log("req written?");
+    req.end();
+};
 
     
 
