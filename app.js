@@ -44,36 +44,34 @@ function getRandom(){
 apiRequest(api.hostname, api.path);
 // Sending the API
 function apiRequest(hostname, path) {
-    let options = {
+    let options = { //Hard-coded options for sending request
         hostname: "energydemo-prod.apps.coffee.demolab.local",
         port: 80,
         path: "/domain1/test1?user_key=a9ceb65e371bf1c54038efb99f728d39",
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json' // VERY Necessary
         }
     };
     console.log(hostname + path);
-    let req = http.request(options, (resp) => {
-        let data = '';
+    let req = http.request(options, (resp) => { //create a request object all interactions with the request use this object
+        //when req is executed a resp value is created and this function is triggered
 
-        resp.on('data', (chunk) => {
-            console.log(`BODY: ${chunk}`);
+        resp.on('data', (chunk) => {  //on receipt of data write to console
+            console.log(`BODY: ${chunk}`);  // backtick susbstittion is very cool
         })
-        resp.on('end', () => {
+        resp.on('end', () => { // end of response, deliniate between req bodies
             console.log("No more data in response");
         });
     });
 
-    req.on('error', (e) => {
+    req.on('error', (e) => { // error handling; simple enough
         console.error("ERR: " + e.message);
     })
-    console.log("req created?");
 
-    req.write(JSON.stringify(body));
-    console.log(req);
-    console.log()
-    req.end();
+    req.write(JSON.stringify(body)); // adds "body" variable to the request
+    //console.log(req);   // output the entire reuest definition 
+    req.end(); // fires the request off
 };
 
     
