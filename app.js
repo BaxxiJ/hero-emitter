@@ -20,7 +20,7 @@ function getRandom(){
     return (Math.random() * 2) * (Math.random() * 3);
 }
 
-setInterval(timerFunc, 1200);
+//setInterval(timerFunc, 1200);
 
 // function timerFunc() {
 //     user_keys.forEach(apiPathAssembler);
