@@ -10,7 +10,7 @@ const body = {"key1":"value1","key2":"value2"};
 
 var api = {
     hostname: prod_url,
-    path: endpoints[1] + user_keys[1],
+    path: endpoints[1] + user_keys[0],
 }
 
 // Setting Timers for the function call
