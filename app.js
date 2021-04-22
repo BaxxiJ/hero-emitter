@@ -3,7 +3,8 @@ const http = require('http');
 
 //process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0; 
 
-var prod_url = "http://energydemo-prod.apps.coffee.demolab.local:80";
+var prod_url = "http://energydemo-prod.apps.coffee.demolab.local";
+const port = "80";
 let endpoints = ["/domain1", "/domain1/test1", "/domain1/test1/test2", "/topic"];
 let user_keys = ["?user_key=a9ceb65e371bf1c54038efb99f728d39"];
 const body = {"key1":"value1","key2":"value2"};
@@ -46,9 +47,9 @@ apiRequest(api.hostname, api.path);
 // Sending the API
 function apiRequest(hostname, path) {
     let options = { //Hard-coded options for sending request
-        hostname: "energydemo-prod.apps.coffee.demolab.local",
+        hostname: prod_url,
         port: 80,
-        path: "/domain1/test1?user_key=a9ceb65e371bf1c54038efb99f728d39",
+        path: path,
         method: 'POST',
         headers: {
             'Content-Type': 'application/json' // VERY Necessary
