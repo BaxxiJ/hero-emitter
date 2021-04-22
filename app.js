@@ -44,8 +44,13 @@ function getRandom(){
 apiRequest(api.hostname, api.path);
 // Sending the API
 function apiRequest(hostname, path) {
+    let options = {
+        hostname: prod_url,
+        path: path,
+        method: 'POST'
+    };
     console.log(hostname + path);
-    let req = http.request(hostname + path, (resp) => {
+    let req = http.request(options, (resp) => {
         let data = '';
 
         resp.on('data', (chunk) => {
@@ -62,7 +67,7 @@ function apiRequest(hostname, path) {
     console.log("req created?");
 
     req.write(JSON.stringify(body));
-    console.log("req written?");
+    console.log(req);
     req.end();
 };
 
