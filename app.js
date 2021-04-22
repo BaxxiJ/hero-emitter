@@ -45,7 +45,8 @@ apiRequest(api.hostname, api.path);
 // Sending the API
 function apiRequest(hostname, path) {
     let options = {
-        hostname: prod_url,
+        hostname: "http://energydemo-prod.apps.coffee.demolab.local",
+        port: 443,
         path: path,
         method: 'POST'
     };
