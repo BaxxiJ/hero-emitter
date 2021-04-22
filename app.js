@@ -20,26 +20,27 @@ function getRandom(){
     return (Math.random() * 2) * (Math.random() * 3);
 }
 
-//setInterval(timerFunc, 1200);
+setInterval(timerFunc, 120000);
 
-// function timerFunc() {
-//     user_keys.forEach(apiPathAssembler);
-// }
+function timerFunc() {
+    user_keys.forEach(apiPathAssembler);
+}
 
-// function apiPathAssembler(user_key) {
-//     console.log(user_key);
-//     let loops = Math.random() * 3
-//     for (let i = 0; i < loops; i++) {
-//         let callAmount = getRandom();
-//         // if (i == 2) {
-//         //     callAmount = callAmount / 4;
-//         // }
-//         for (let j = 0; j < callAmount; j++) {
-//             apiRequest(prod_url, endpoints[i] + user_key);
-//             console.log(prod_url + endpoints[i] + user_key);
-//         }
-//     }
-// }
+function apiPathAssembler(user_key) {
+    console.log(user_key);
+    let loops = Math.random() * 3
+    for (let i = 0; i < loops; i++) {
+        let callAmount = getRandom();
+        if (i == 3) {
+            apiGetRequest(prod_url, endpoints[i] + user_key);
+        }else {
+            for (let j = 0; j < callAmount; j++) {
+                apiRequest(prod_url, endpoints[i] + user_key);
+                console.log(prod_url + endpoints[i] + user_key);
+            }
+        }
+    }
+}
 
 apiRequest(api.hostname, api.path);
 // Sending the API
@@ -76,22 +77,22 @@ function apiRequest(hostname, path) {
 
     
 
-// function apiRequest(hostname, path) {
-//     console.log(hostname + "___" + path);
-//     https.get(hostname + path, (resp) => {
-//     let data = '';
+function apiGetRequest(hostname, path) {
+    console.log(hostname + "___" + path);
+    https.get(hostname + path, (resp) => {
+    let data = '';
 
-//     // A chunk of data has been received.
-//     resp.on('data', (d) => {
-//         process.stdout.write(d);
-//     });
+    // A chunk of data has been received.
+    resp.on('data', (d) => {
+        process.stdout.write(d);
+    });
 
-//     // The whole response has been received. Print out the result.
-//     resp.on('end', () => {
-//         console.log(data); // this basically works as a newline, doesn't output the data object but makes logs nicer
-//     });
+    // The whole response has been received. Print out the result.
+    resp.on('end', () => {
+        console.log(data); // this basically works as a newline, doesn't output the data object but makes logs nicer
+    });
 
-//     }).on("error", (err) => {
-//     console.log("Error: " + err.message);
-//     });
-// }
+    }).on("error", (err) => {
+    console.log("Error: " + err.message);
+    });
+}
