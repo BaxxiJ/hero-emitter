@@ -2,15 +2,9 @@ const https = require('https');
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0; 
 
-var prod_url = "https://hero-superheroes-apicast-production.apps.coffee.demolab.local:443";
-let endpoints = ["/v1/api/heroes/random", "/v1/api/heroes/1", "/v1/api/heroes"];
-let user_keys = ["?user_key=d5e22b69792d9c4fe35744df5a7d793c", "?user_key=2fe5533c885a9a28fd6da5914d47601c"];
-//var test_api = "https://api.kanye.rest/?format=text"
-
-var test_api = {
-    hostname: "https://api.kanye.rest",
-    path: "/?format=text",
-}
+var prod_url = "http://energydemo-prod.apps.coffee.demolab.local:80";
+let endpoints = ["/domain1", "/domain1/test1", "domain1/tst1/test2"];
+let user_keys = ["user_key=a9ceb65e371bf1c54038efb99f728d39"];
 
 var api = {
     hostname: prod_url,
@@ -21,26 +15,26 @@ var api = {
 
 // 
 function getRandom(){
-    return (Math.random() * 10) * (Math.random() * 10);
+    return (Math.random() * 3) * (Math.random() * 3);
 }
 
-setInterval(timerFunc, 600000);
+setInterval(timerFunc, 2000);
 
 function timerFunc() {
     user_keys.forEach(apiPathAssembler);
 }
 
-function apiPathAssembler(value) {
-    console.log(value);
+function apiPathAssembler(user_key) {
+    console.log(user_key);
     let loops = Math.random() * 3
     for (let i = 0; i < loops; i++) {
         let callAmount = getRandom();
-        if (i == 2) {
-            callAmount = callAmount / 4;
-        }
+        // if (i == 2) {
+        //     callAmount = callAmount / 4;
+        // }
         for (let j = 0; j < callAmount; j++) {
-            apiRequest(prod_url, endpoints[i] + value);
-            console.log(prod_url, endpoints[i] + value)
+            apiRequest(prod_url, endpoints[i] + user_key);
+            console.log(prod_url, endpoints[i] + user_key);
         }
     }
 }
