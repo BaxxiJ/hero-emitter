@@ -1,6 +1,6 @@
-const https = require('https');
+const https = require('http');
 
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0; 
+//process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0; 
 
 var prod_url = "http://energydemo-prod.apps.coffee.demolab.local:80";
 let endpoints = ["/domain1", "/domain1/test1", "domain1/tst1/test2"];
